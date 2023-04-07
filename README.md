@@ -19,7 +19,7 @@ On client side:
 - Homepage listing all posts with search field to fi d the most relevant (by name or prompt)
 - Create page for creating new images (generate button) and sharing them (share button)
 
-To be considered:
+To be considered (wishlist):
 - possibility to add full CRUD
 - "See more" button for the Homepage
 - modify search functionality
