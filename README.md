@@ -16,7 +16,7 @@ On server side:
 - get route to get all posts
 
 On client side:
-- Homepage listing all posts with search field to fi d the most relevant (by name or prompt)
+- Homepage listing all posts with search field to find the most relevant (by name or prompt)
 - Create page for creating new images (generate button) and sharing them (share button)
 
 To be considered (wishlist):
