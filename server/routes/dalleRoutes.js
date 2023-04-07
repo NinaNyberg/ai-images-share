@@ -35,7 +35,6 @@ router.post('/', (req, res) => {
       response_format: 'b64_json'
     })
     .then((data) => {
-      console.log(data.data.data[0].b64_json);
       res.status(200).json({ photo: data.data.data[0].b64_json });
     })
     .catch((error) => {
