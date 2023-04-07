@@ -11,7 +11,21 @@ const CreatePost = () => {
   const [generatingImg, setGeneratingImg] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const handleSubmit = () => {};
+  const sharePhoto = (form) =>
+    api.post('/post', { form }).then((response) => response.data);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (form.name && form.prompt && form.photo) {
+      setLoading(true);
+      sharePhoto(form).then((data) => {
+        setLoading(false);
+        navigate('/');
+      });
+    } else {
+      alert('Plz enter prompt and create image first!');
+    }
+  };
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
