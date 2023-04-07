@@ -1,6 +1,6 @@
 # ai-images-share: generate images with OpenAI and share them with others
 
-App based on JavaScript Mastery tutorial
+https://ai-images-share.onrender.com/
 
 - server and client side
 - Node, React, JavaScript
@@ -26,3 +26,4 @@ To be considered (wishlist):
 - adding register and login 
 - adding user profile page
 
+App based on JavaScript Mastery tutorial
