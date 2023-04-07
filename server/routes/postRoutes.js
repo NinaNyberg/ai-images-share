@@ -14,9 +14,37 @@ cloudinary.config({
 });
 
 // get all posts
-router.get('/', (req, res) => {});
+router.get('/', (req, res) => {
+  Post.find()
+    .then((posts) => {
+      res.status(200).json({ posts });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({ message: error });
+    });
+});
 
 // create a post
-router.post('/', (req, res) => {});
+router.post('/', (req, res) => {
+  const { name, prompt, photo } = req.body.form;
+  const photoUrl = cloudinary.uploader.upload(photo);
+  photoUrl
+    .then((data) => {
+      const photo = data.url;
+      Post.create({
+        name,
+        prompt,
+        photo
+      });
+    })
+    .then((post) => {
+      res.status(201).json({ post });
+    })
+    .catch((error) => {
+      console.log(error);
+      res.status(500).json({ message: error });
+    });
+});
 
 export default router;
