@@ -8,6 +8,7 @@ const Home = () => {
   const [searchText, setSearchText] = useState('');
   const [results, setResults] = useState(null);
 
+  // get posts to render on homepage
   const fetchPosts = () => {
     api.get('/post').then((response) => {
       response.data;
@@ -21,6 +22,7 @@ const Home = () => {
     setLoading(false);
   }, []);
 
+  // serach/filter posts on homepage (TODO: may be refacored so that search comes from backend)
   const handleSearch = (e) => {
     setSearchText(e.target.value);
 
@@ -43,6 +45,7 @@ const Home = () => {
         </p>
       </div>
       <div className="mt-16">
+        {/* search field */}
         <FormField
           type="text"
           name="text"
@@ -51,6 +54,7 @@ const Home = () => {
           onChange={handleSearch}
         />
       </div>
+      {/* render posts */}
       <div className="mt-10">
         {loading ? (
           <div className="flex justify-center items-center">
@@ -65,7 +69,7 @@ const Home = () => {
             )}
             <div className="grid lg:grid-cols-4 sm:grid-cols-3 xs:grid-cols-2 grid-cols-1 gap-3">
               {searchText ? (
-                <RenderCards data={results} title="No search results found" />
+                <RenderCards data={results} title="Nothing found :(" />
               ) : (
                 <RenderCards data={posts} title="No posts found" />
               )}
