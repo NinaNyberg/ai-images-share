@@ -1,15 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { Loader, Card, FormField } from '../components';
+import { Loader, FormField, RenderCards } from '../components';
 import api from '../services/api';
-
-const RenderCards = ({ data, title }) => {
-  if (data?.length > 0) {
-    return data.map((post) => <Card key={post._id} {...post} />);
-  }
-  return (
-    <h2 className="mt-5 font-bold text-[#6449ff] tets-xl uppercase">{title}</h2>
-  );
-};
 
 const Home = () => {
   const [loading, setLoading] = useState(false);
