@@ -13,13 +13,13 @@ const Home = () => {
     api.get('/post').then((response) => {
       response.data;
       setPosts(response.data.posts.reverse());
+      setLoading(false);
     });
   };
 
   useEffect(() => {
     setLoading(true);
     fetchPosts();
-    setLoading(false);
   }, []);
 
   // serach/filter posts on homepage (TODO: may be refacored so that search comes from backend)
@@ -71,7 +71,11 @@ const Home = () => {
               {searchText ? (
                 <RenderCards data={results} title="Nothing found :(" />
               ) : (
-                <RenderCards data={posts} title="No posts found" />
+                <RenderCards
+                  data={posts}
+                  title="No posts found"
+                  fetchPosts={fetchPosts}
+                />
               )}
             </div>
           </>

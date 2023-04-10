@@ -1,8 +1,24 @@
 import React from 'react';
 import { download } from '../assets';
 import { downloadImage } from '../utils';
+import api from '../services/api';
+import { useNavigate } from 'react-router-dom';
 
-const Card = ({ _id, name, prompt, photo }) => {
+const Card = ({ _id, name, prompt, photo, fetchPosts }) => {
+  const navigate = useNavigate();
+  const deleteImg = (id) =>
+    api.delete(`/post/${id}`).then((response) => response.data);
+
+  const handleDeleteImg = () => {
+    deleteImg(_id)
+      .then(() => {
+        console.log('Image was deleted');
+        fetchPosts();
+        navigate('/');
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="rounded-xl group relative shadow-card hover:shadow-cardhover card">
       <img
@@ -19,17 +35,26 @@ const Card = ({ _id, name, prompt, photo }) => {
             </div>
             <p className="text-white text-sm">{name}</p>
           </div>
-          <button
-            type="button"
-            onClick={() => downloadImage(_id, photo)}
-            className="outline-none bg-transparent border-none"
-          >
-            <img
-              src={download}
-              alt="download"
-              className="w-6 h-6 object-contain invert"
-            />
-          </button>
+          <div className="flex justify-between">
+            <button
+              type="button"
+              onClick={() => downloadImage(_id, photo)}
+              className="outline-none bg-transparent border-none"
+            >
+              <img
+                src={download}
+                alt="download"
+                className="w-6 h-6 object-contain invert"
+              />
+            </button>
+            <button
+              type="button"
+              onClick={() => handleDeleteImg()}
+              className="outline-none bg-transparent border-none text-white text-xs ml-3"
+            >
+              Delete
+            </button>
+          </div>
         </div>
       </div>
     </div>

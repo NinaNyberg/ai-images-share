@@ -29,6 +29,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
   const { name, prompt, photo } = req.body.form;
   const photoUrl = cloudinary.uploader.upload(photo);
+  console.log(name);
   photoUrl
     .then((data) => {
       const photo = data.url;
@@ -39,10 +40,25 @@ router.post('/', (req, res) => {
       });
     })
     .then((post) => {
+      console.log(post);
       res.status(201).json({ post });
     })
     .catch((error) => {
       console.log(error);
+      res.status(500).json({ message: error });
+    });
+});
+
+// delete a post
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  console.log(req.params);
+  console.log(id);
+  Post.findByIdAndDelete(id)
+    .then(() => {
+      res.json({});
+    })
+    .catch((error) => {
       res.status(500).json({ message: error });
     });
 });
