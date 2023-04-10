@@ -2,6 +2,7 @@ import React from 'react';
 import { download } from '../assets';
 import { downloadImage } from '../utils';
 import api from '../services/api';
+import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
 
 const Card = ({ _id, name, prompt, photo, fetchPosts }) => {
   const deleteImg = (id) =>
@@ -49,7 +50,7 @@ const Card = ({ _id, name, prompt, photo, fetchPosts }) => {
               onClick={() => handleDeleteImg()}
               className="outline-none bg-transparent border-none text-white text-xs ml-3"
             >
-              Delete
+              <DeleteOutlineIcon />
             </button>
           </div>
         </div>
