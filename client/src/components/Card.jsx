@@ -36,6 +36,7 @@ const Card = ({ _id, name, prompt, photo, fetchPosts }) => {
           <div className="flex justify-between">
             <button
               type="button"
+              title="Download"
               onClick={() => downloadImage(_id, photo)}
               className="outline-none bg-transparent border-none"
             >
@@ -47,6 +48,7 @@ const Card = ({ _id, name, prompt, photo, fetchPosts }) => {
             </button>
             <button
               type="button"
+              title="Delete"
               onClick={() => handleDeleteImg()}
               className="outline-none bg-transparent border-none text-white text-xs ml-3"
             >
