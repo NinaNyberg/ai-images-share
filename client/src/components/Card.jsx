@@ -2,10 +2,8 @@ import React from 'react';
 import { download } from '../assets';
 import { downloadImage } from '../utils';
 import api from '../services/api';
-import { useNavigate } from 'react-router-dom';
 
 const Card = ({ _id, name, prompt, photo, fetchPosts }) => {
-  const navigate = useNavigate();
   const deleteImg = (id) =>
     api.delete(`/post/${id}`).then((response) => response.data);
 
@@ -14,7 +12,6 @@ const Card = ({ _id, name, prompt, photo, fetchPosts }) => {
       .then(() => {
         console.log('Image was deleted');
         fetchPosts();
-        navigate('/');
       })
       .catch((err) => console.log(err));
   };
