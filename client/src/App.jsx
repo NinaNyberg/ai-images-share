@@ -17,11 +17,11 @@ const App = () => {
   return (
     <BrowserRouter>
       <header
-        className={`sticky left-0 top-0 right-0 z-50 ${
+        className={`sticky left-0 top-0 right-0 z-50 bg-gradient-to-r from-[#ff9c60] to-[#ffd6b8] ${
           !top && `bg-white shadow-lg`
         }`}
       >
-        <div className="w-full flex justify-between items-center bg-gradient-to-r from-[#ff9c60] to-[#ffd6b8] sm:px-8 px-4 py-4 border-b border-b-[#e6ebf4]">
+        <div className="w-full flex justify-between items-center sm:px-8 px-4 py-4">
           <Link to="/">
             <img src={logo} alt="logo" className="w-28 object-contain" />
           </Link>
