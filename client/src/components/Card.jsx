@@ -1,10 +1,16 @@
-import React from 'react';
+import { useState } from 'react';
 import { download } from '../assets';
 import { downloadImage } from '../utils';
 import api from '../services/api';
 import DeleteOutlineIcon from '@mui/icons-material/DeleteOutline';
+import Dialog from './Dialog';
 
 const Card = ({ _id, name, prompt, photo, fetchPosts }) => {
+  const [showDialog, setShowDialog] = useState(false);
+
+  const handleShow = () => setShowDialog(true);
+  const handleClose = () => setShowDialog(false);
+
   const deleteImg = (id) =>
     api.delete(`/post/${id}`).then((response) => response.data);
 
@@ -49,7 +55,7 @@ const Card = ({ _id, name, prompt, photo, fetchPosts }) => {
             <button
               type="button"
               title="Delete"
-              onClick={() => handleDeleteImg()}
+              onClick={() => handleShow()}
               className="outline-none bg-transparent border-none text-white text-xs ml-3"
             >
               <DeleteOutlineIcon />
@@ -57,6 +63,9 @@ const Card = ({ _id, name, prompt, photo, fetchPosts }) => {
           </div>
         </div>
       </div>
+      {showDialog && (
+        <Dialog onDelete={handleDeleteImg} onClose={handleClose} />
+      )}
     </div>
   );
 };

@@ -22,7 +22,7 @@ const Home = () => {
     fetchPosts();
   }, []);
 
-  // serach/filter posts on homepage (TODO: may be refacored so that search comes from backend)
+  // search/filter posts on homepage (TODO: may be changed so that search comes from backend)
   const handleSearch = (e) => {
     setSearchText(e.target.value);
 
